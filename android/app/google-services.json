@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "238850356683",
+    "project_id": "tour-referral-app",
+    "storage_bucket": "tour-referral-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:238850356683:android:4cf63e7355f40e8321724e",
+        "android_client_info": {
+          "package_name": "com.example.tour_referral_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9GXVAB0dAalCr4TkUwymDVsBT6vbbCKo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
