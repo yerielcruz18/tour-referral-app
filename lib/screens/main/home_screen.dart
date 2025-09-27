@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'leaderboard_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -9,39 +10,13 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int userPoints = 1250; // Mock data for now
-  int currentStreak = 7;
-  bool hasSharedToday = false;
-
-  void _shareContent() {
-    setState(() {
-      if (!hasSharedToday) {
-        userPoints += 50;
-        hasSharedToday = true;
-        
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('🎉 +50 Points Earned!'),
-            backgroundColor: Colors.green,
-          ),
-        );
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('Already shared today! Come back tomorrow'),
-            backgroundColor: Colors.orange,
-          ),
-        );
-      }
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[100],
       appBar: AppBar(
         backgroundColor: Colors.blue,
+        elevation: 0,
         title: Text(
           'Tour Ambassadors',
           style: GoogleFonts.poppins(
@@ -51,194 +26,208 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         actions: [
           IconButton(
-            icon: Icon(Icons.person, color: Colors.white),
+            icon: Icon(Icons.notifications_outlined, color: Colors.white),
             onPressed: () {
-              // TODO: Navigate to profile
+              // TODO: Add notifications
             },
           ),
         ],
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Points Card
+            // Welcome Card
             Container(
               width: double.infinity,
-              padding: const EdgeInsets.all(24),
+              padding: EdgeInsets.all(20),
               decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [Colors.blue, Colors.blue[700]!],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
+                color: Colors.blue,
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(30),
+                  bottomRight: Radius.circular(30),
                 ),
-                borderRadius: BorderRadius.circular(20),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.blue.withOpacity(0.3),
-                    blurRadius: 10,
-                    offset: Offset(0, 5),
-                  ),
-                ],
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Your Points',
+                    'Welcome Back!',
                     style: GoogleFonts.poppins(
-                      color: Colors.white70,
-                      fontSize: 14,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
                     ),
                   ),
-                  const SizedBox(height: 8),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        '$userPoints',
-                        style: GoogleFonts.poppins(
-                          color: Colors.white,
-                          fontSize: 48,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Container(
-                        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                        decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.2),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Row(
+                  SizedBox(height: 10),
+                  Container(
+                    padding: EdgeInsets.all(15),
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.2),
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Icon(Icons.local_fire_department, color: Colors.orange, size: 20),
-                            SizedBox(width: 4),
                             Text(
-                              '$currentStreak day streak',
+                              'Your Points',
+                              style: GoogleFonts.poppins(
+                                color: Colors.white70,
+                                fontSize: 14,
+                              ),
+                            ),
+                            Text(
+                              '1,250',
                               style: GoogleFonts.poppins(
                                 color: Colors.white,
-                                fontWeight: FontWeight.w600,
+                                fontSize: 28,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
                           ],
                         ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 16),
-                  Text(
-                    '≈ ₱${(userPoints * 1).toStringAsFixed(0)} value',
-                    style: GoogleFonts.poppins(
-                      color: Colors.white70,
-                      fontSize: 14,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            
-            const SizedBox(height: 24),
-            
-            // Daily Share Section
-            Text(
-              "Today's Share",
-              style: GoogleFonts.poppins(
-                fontSize: 20,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            const SizedBox(height: 12),
-            
-            Container(
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(16),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.1),
-                    blurRadius: 5,
-                    offset: Offset(0, 2),
-                  ),
-                ],
-              ),
-              child: Column(
-                children: [
-                  // Mock Instagram Post Preview
-                  Container(
-                    height: 200,
-                    decoration: BoxDecoration(
-                      color: Colors.grey[200],
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(Icons.photo_library, size: 50, color: Colors.grey),
-                          SizedBox(height: 8),
-                          Text(
-                            'Tour Photo Preview',
-                            style: GoogleFonts.poppins(color: Colors.grey),
+                        Container(
+                          padding: EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            color: Colors.white.withOpacity(0.3),
+                            shape: BoxShape.circle,
                           ),
-                        ],
-                      ),
+                          child: Icon(
+                            Icons.star,
+                            color: Colors.yellow,
+                            size: 30,
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                  const SizedBox(height: 16),
-                  
-                  // Share Buttons
-                  Text(
-                    hasSharedToday ? '✅ Shared Today!' : 'Share to earn 50 points',
-                    style: GoogleFonts.poppins(
-                      fontSize: 14,
-                      color: hasSharedToday ? Colors.green : Colors.grey[600],
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-                  
-                  // Platform buttons
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      _buildShareButton('WhatsApp', Colors.green, Icons.chat),
-                      _buildShareButton('Instagram', Colors.purple, Icons.camera_alt),
-                      _buildShareButton('Facebook', Colors.blue, Icons.facebook),
-                    ],
                   ),
                 ],
               ),
             ),
-            
-            const SizedBox(height: 24),
             
             // Quick Stats
-            Row(
-              children: [
-                Expanded(
-                  child: _buildStatCard('Total Shares', '47', Icons.share),
+            Padding(
+              padding: EdgeInsets.all(20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Quick Stats',
+                    style: GoogleFonts.poppins(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  SizedBox(height: 15),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: _buildStatCard(
+                          'Referrals',
+                          '12',
+                          Icons.people,
+                          Colors.purple,
+                        ),
+                      ),
+                      SizedBox(width: 15),
+                      Expanded(
+                        child: _buildStatCard(
+                          'This Month',
+                          '5',
+                          Icons.calendar_today,
+                          Colors.orange,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            
+            // Recent Activity
+            Padding(
+              padding: EdgeInsets.all(20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Recent Activity',
+                    style: GoogleFonts.poppins(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  SizedBox(height: 15),
+                  _buildActivityItem(
+                    'New Referral',
+                    'John Doe booked a tour',
+                    '+100 points',
+                    Colors.green,
+                  ),
+                  _buildActivityItem(
+                    'Milestone Reached',
+                    '10 referrals completed',
+                    '+500 points',
+                    Colors.blue,
+                  ),
+                  _buildActivityItem(
+                    'Tour Completed',
+                    'Sarah Smith completed Bohol tour',
+                    '+50 points',
+                    Colors.orange,
+                  ),
+                ],
+              ),
+            ),
+            
+            // Share Button
+            Padding(
+              padding: EdgeInsets.all(20),
+              child: SizedBox(
+                width: double.infinity,
+                height: 56,
+                child: ElevatedButton.icon(
+                  onPressed: () {
+                    // TODO: Add share functionality
+                  },
+                  icon: Icon(Icons.share, color: Colors.white),
+                  label: Text(
+                    'Share Tour Link',
+                    style: GoogleFonts.poppins(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.white,
+                    ),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blue,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
                 ),
-                SizedBox(width: 12),
-                Expanded(
-                  child: _buildStatCard('Rank', '#12', Icons.leaderboard),
-                ),
-                SizedBox(width: 12),
-                Expanded(
-                  child: _buildStatCard('Earned', '₱2,350', Icons.attach_money),
-                ),
-              ],
+              ),
             ),
           ],
         ),
       ),
-      
-      // Bottom Navigation
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 0,
         selectedItemColor: Colors.blue,
         unselectedItemColor: Colors.grey,
         type: BottomNavigationBarType.fixed,
+        onTap: (index) {
+          if (index == 1) { // Leaderboard
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const LeaderboardScreen()),
+            );
+          }
+          // TODO: Add other navigation items
+        },
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(icon: Icon(Icons.leaderboard), label: 'Leaderboard'),
@@ -249,51 +238,108 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
   
-  Widget _buildShareButton(String platform, Color color, IconData icon) {
-    return ElevatedButton.icon(
-      onPressed: _shareContent,
-      icon: Icon(icon, size: 20),
-      label: Text(platform),
-      style: ElevatedButton.styleFrom(
-        backgroundColor: color,
-        foregroundColor: Colors.white,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
-        ),
-      ),
-    );
-  }
-  
-  Widget _buildStatCard(String label, String value, IconData icon) {
+  Widget _buildStatCard(String title, String value, IconData icon, Color color) {
     return Container(
-      padding: EdgeInsets.all(16),
+      padding: EdgeInsets.all(15),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.1),
-            blurRadius: 5,
-            offset: Offset(0, 2),
+            color: Colors.black.withOpacity(0.05),
+            blurRadius: 10,
+            offset: Offset(0, 5),
           ),
         ],
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(icon, color: Colors.blue, size: 24),
-          SizedBox(height: 8),
+          Container(
+            padding: EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              color: color.withOpacity(0.1),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Icon(icon, color: color, size: 20),
+          ),
+          SizedBox(height: 10),
           Text(
             value,
             style: GoogleFonts.poppins(
-              fontSize: 18,
+              fontSize: 24,
               fontWeight: FontWeight.bold,
             ),
           ),
           Text(
-            label,
+            title,
             style: GoogleFonts.poppins(
-              fontSize: 12,
-              color: Colors.grey,
+              fontSize: 14,
+              color: Colors.grey[600],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+  
+  Widget _buildActivityItem(String title, String subtitle, String points, Color color) {
+    return Container(
+      margin: EdgeInsets.only(bottom: 12),
+      padding: EdgeInsets.all(15),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.05),
+            blurRadius: 10,
+            offset: Offset(0, 5),
+          ),
+        ],
+      ),
+      child: Row(
+        children: [
+          Container(
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              color: color.withOpacity(0.1),
+              shape: BoxShape.circle,
+            ),
+            child: Icon(
+              Icons.check_circle,
+              color: color,
+              size: 24,
+            ),
+          ),
+          SizedBox(width: 15),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: GoogleFonts.poppins(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 16,
+                  ),
+                ),
+                Text(
+                  subtitle,
+                  style: GoogleFonts.poppins(
+                    color: Colors.grey[600],
+                    fontSize: 14,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Text(
+            points,
+            style: GoogleFonts.poppins(
+              color: color,
+              fontWeight: FontWeight.w600,
+              fontSize: 16,
             ),
           ),
         ],
