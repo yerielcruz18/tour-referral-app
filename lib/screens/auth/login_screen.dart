@@ -66,7 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     keyboardType: TextInputType.phone,
                     decoration: InputDecoration(
                       labelText: 'Phone Number',
-                      prefixText: '+63 ',
+                      prefixText: '+1 ',
                       filled: true,
                       fillColor: Colors.white,
                       border: OutlineInputBorder(

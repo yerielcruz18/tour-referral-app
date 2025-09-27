@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'leaderboard_screen.dart';
+import 'profile_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -225,8 +226,13 @@ class _HomeScreenState extends State<HomeScreen> {
               context,
               MaterialPageRoute(builder: (context) => const LeaderboardScreen()),
             );
+          } else if (index == 3) { // Profile
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const ProfileScreen()),
+            );
           }
-          // TODO: Add other navigation items
+          // TODO: Add rewards screen (index 2)
         },
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
